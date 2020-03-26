@@ -1,0 +1,57 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 5cb7b65de56a3fe4b53fc51df90ac908e1b65c783e6df301d6e7bc48c9178b05
+
+name:           server
+version:        0.1.0.0
+description:    prototype No.2
+homepage:       https://github.com/kirisaki/prototip-2.kirisaki.dev#readme
+bug-reports:    https://github.com/kirisaki/prototip-2.kirisaki.dev/issues
+author:         Akihito KIRISAKI
+maintainer:     kirisaki@klaraworks.net
+copyright:      (c) Akihito KIRISAKI
+license:        BSD3
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/kirisaki/prototip-2.kirisaki.dev
+
+executable server
+  main-is: Main.hs
+  other-modules:
+      Paths_server
+  hs-source-dirs:
+      src
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , extensible
+    , servant
+    , servant-server
+    , text
+    , wai
+    , warp
+  default-language: Haskell2010
+
+test-suite server-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_server
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , extensible
+    , servant
+    , servant-server
+    , text
+    , wai
+    , warp
+  default-language: Haskell2010
