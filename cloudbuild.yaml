@@ -20,5 +20,5 @@ steps:
   args:
   - 'push'
   - 'gcr.io/$PROJECT_ID/prototip-2:$TAG_NAME'
-timeout: 1200s
+timeout: 1800s
 
