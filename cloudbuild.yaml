@@ -12,7 +12,7 @@ steps:
   args:
   - -c
   - 'cp -r /workspace/cache ~/.cabal/store'
-  - '|| cd server && cabal update && cabal build && cabal test'
+  - '; cd server && cabal update && cabal build && cabal test'
   - '&& cabal install --install-mehod=copy --installdir=/workspace'
   - '&& cp -r ~/.cabal/store /workspace/cache'
 
