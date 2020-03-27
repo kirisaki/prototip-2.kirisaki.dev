@@ -23,7 +23,7 @@ steps:
   - 'cd server && cabal update && cabal build '
   - '&& cabal test'
   - '&& cabal install --install-mehod=copy --installdir=/workspace'
-  - '&& cp -r ~/.cabal/store /workspace/cache'
+  - '&& cp -r ~/.cabal/store/ /workspace/cache/'
 
 - name: gcr.io/cloud-builders/gsutil
   id: Store cache
