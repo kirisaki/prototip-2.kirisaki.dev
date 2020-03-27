@@ -21,7 +21,7 @@ steps:
   args:
   - -c
   - 'cd server && cabal update && cp -r /workspace/cache ~/.cabal/store'
-  - 'cabal build && cabal test'
+  - '&& cabal build && cabal test'
   - '&& cabal install --install-mehod=copy --installdir=/workspace'
   - '&& cp -r ~/.cabal/store /workspace/cache'
 
