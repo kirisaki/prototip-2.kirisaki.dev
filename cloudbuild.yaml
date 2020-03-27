@@ -4,7 +4,7 @@ steps:
   entrypoint: /bin/sh
   args:
   - -c
-  - 'cd server && stack test'
+  - 'cd server && cabal test'
 
 - name: 'gcr.io/cloud-builders/docker'
   id: Build

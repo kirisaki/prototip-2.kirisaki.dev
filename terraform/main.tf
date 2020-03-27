@@ -26,6 +26,6 @@ resource "google_cloudbuild_trigger" "default" {
       tag = "[0-9]+\\.[0-9]+\\.[0-9]"
     }
   }
-  filename = "cloudbuild.yml"
+  filename = "cloudbuild.yaml"
 }
 
