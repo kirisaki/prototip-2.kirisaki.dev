@@ -1,5 +1,4 @@
 steps:
-timeout: 1200s
 - name: 'haskell:8.8.2'
   id: Test & Build
   entrypoint: /bin/sh
@@ -21,4 +20,5 @@ timeout: 1200s
   args:
   - 'push'
   - 'gcr.io/$PROJECT_ID/prototip-2:$TAG_NAME'
+timeout: 1200s
 
