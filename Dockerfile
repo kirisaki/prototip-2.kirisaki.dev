@@ -1,4 +1,4 @@
 FROM ubuntu:18.04
-COPY ./server/server /sbin/
+COPY ./server /sbin/
 CMD ["/sbin/server"]
 
