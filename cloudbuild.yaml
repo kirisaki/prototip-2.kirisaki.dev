@@ -20,8 +20,9 @@ steps:
   entrypoint: /bin/sh
   args:
   - -c
-  - 'pwd && ls -a && cp -r /workspace/cache ~/.cabal/store'
-  - '; cd server && cabal update && cabal build && cabal test'
+  - 'mkdir -p ~/.cabal/store'
+  - '&&cp -r /workspace/cache ~/.cabal/store'
+  - '&& cd server && cabal update && cabal build && cabal test'
   - '&& cabal install --install-mehod=copy --installdir=/workspace'
   - '&& cp -r ~/.cabal/store /workspace/cache'
 
