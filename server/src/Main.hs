@@ -19,7 +19,7 @@ type Message = Record
      ]
 
 getMessage :: Servant.Handler Message
-getMessage = pure $ #type @= "text" <: #msg @= "nyaan" <: nil
+getMessage = pure $ #type @= "text" <: #msg @= "nyaaaan" <: nil
 
 type Api = Get '[JSON] Message
 
