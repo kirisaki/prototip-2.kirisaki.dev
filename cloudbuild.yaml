@@ -4,7 +4,7 @@ steps:
   args:
   - cp
   - -r
-  - gs://prototip-2-cache/cache
+  - gs://prototip-2-cache/cache/
   - /workspace/cache
 
 - name: 'haskell:8.8.2'
@@ -23,7 +23,7 @@ steps:
   - cp
   - -r
   - /workspace/cache
-  - gs://prototip-2-cache/cache
+  - gs://prototip-2-cache/cache/
 
 - name: gcr.io/cloud-builders/docker
   id: Build
