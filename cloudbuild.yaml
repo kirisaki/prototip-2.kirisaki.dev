@@ -2,7 +2,8 @@ steps:
 - name: gcr.io/cloud-builders/gsutil
   id: Restore cache
   args:
-  - cp -r
+  - cp
+  - -r
   - gs://prototip-2-cache/cache
   - cache
 
@@ -19,7 +20,8 @@ steps:
 - name: gcr.io/cloud-builders/gsutil
   id: Store cache
   args:
-  - cp -r
+  - cp
+  - -r
   - cache
   - gs://prototip-2-cache/cache
 
