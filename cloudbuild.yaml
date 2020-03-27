@@ -5,8 +5,8 @@ steps:
   - rsync
   - -d
   - -r
-  - gs://prototip-2-cache/cache
-  - /workspace/cache
+  - gs://prototip-2-cache/cache/
+  - /workspace/cache/
 
 - name: 'haskell:8.8.2'
   id: Test & Build
@@ -24,8 +24,8 @@ steps:
   - rsync
   - -r
   - -d
-  - /workspace/cache
-  - gs://prototip-2-cache/cache
+  - /workspace/cache/
+  - gs://prototip-2-cache/cache/
 
 - name: gcr.io/cloud-builders/docker
   id: Build
