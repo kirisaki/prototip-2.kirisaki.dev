@@ -1,10 +1,12 @@
 steps:
 - name: 'haskell:8.8.2'
-  id: Test
+  id: Test & Build
   entrypoint: /bin/sh
+  timeout: 1200s
   args:
   - -c
   - 'cd server && cabal update && cabal build && cabal test'
+  - '&& cabal install --install-mehod=copy --installdir=.'
 
 - name: 'gcr.io/cloud-builders/docker'
   id: Build

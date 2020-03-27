@@ -1,5 +1,6 @@
 server/dist-newstyle/
 server/*~
+server/server
 
 terraform/*.tfvars
 terraform/.terraform/
