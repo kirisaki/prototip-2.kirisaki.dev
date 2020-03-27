@@ -5,7 +5,7 @@ steps:
   args:
   - -c
   - 'cd server && cabal update && cabal build && cabal test'
-  - '&& cabal install --install-mehod=copy --installdir=.'
+  - '&& cabal install --install-mehod=copy --installdir=/workspace'
 
 - name: 'gcr.io/cloud-builders/docker'
   id: Build
