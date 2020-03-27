@@ -1,8 +1,8 @@
 steps:
+timeout: 1200s
 - name: 'haskell:8.8.2'
   id: Test & Build
   entrypoint: /bin/sh
-  timeout: 1200s
   args:
   - -c
   - 'cd server && cabal update && cabal build && cabal test'
