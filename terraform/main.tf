@@ -29,3 +29,9 @@ resource "google_cloudbuild_trigger" "default" {
   filename = "cloudbuild.yaml"
 }
 
+resource "google_storage_bucket" "cache" {
+  provider = google-beta
+  name = "prototip-2-cache"
+  project = var.project
+  location = "asia-northeast1"
+}
