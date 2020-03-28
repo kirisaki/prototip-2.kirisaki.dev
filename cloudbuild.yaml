@@ -6,12 +6,12 @@ steps:
   - -c
   - mkdir /workspace/cache
 
-#- name: gcr.io/cloud-builders/gsutil
-#  id: Restore cache
-#  args:
-#  - cp
-#  - gs://prototip-2-cache/cache.tar.gz
-#  - /workspace/cache.tar.gz
+- name: gcr.io/cloud-builders/gsutil
+  id: Restore cache
+  args:
+  - cp
+  - gs://prototip-2-cache/cache.tar.gz
+  - /workspace/cache.tar.gz
 
 - name: 'haskell:8.8.2'
   id: Test & Build
@@ -19,11 +19,12 @@ steps:
   args:
   - -c
   - |
-      #cp -r /workspace/cache /builder/home/.cabal \
-      cd server && cabal update && cabal build \
+      tar xvzf cache.tar.gz -C /builder/home
+      && ls -a
+      && cd server && cabal update && cabal build \
       && cabal test \
       && cabal install --install-method=copy --installdir=/workspace \
-      && tar -czvf /workspace/cache.tar.gz /builder/home/.cabal/
+      && tar czvf /workspace/cache.tar.gz /builder/home/.cabal/
 
 - name: gcr.io/cloud-builders/gsutil
   id: Store cache
