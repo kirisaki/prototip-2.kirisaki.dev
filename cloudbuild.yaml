@@ -19,8 +19,7 @@ steps:
   args:
   - -c
   - |
-      tar xvzf cache.tar.gz -C /builder/home
-      && ls -a
+      tar xzf cache.tar.gz -C /builder/home \
       && cd server && cabal update && cabal build \
       && cabal test \
       && cabal install --install-method=copy --installdir=/workspace \
