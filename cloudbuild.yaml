@@ -19,11 +19,11 @@ steps:
   args:
   - -c
   - |
-      tar xzf cache.tar.gz \
+      tar xzf cache.tar.gz -C /builder/home/ \
       && cd server && cabal update && cabal build \
       && cabal test \
       && cabal install --install-method=copy --installdir=/workspace \
-      && tar czf /workspace/cache.tar.gz /builder/home/.cabal/
+      && cd /builder/home && tar czf /workspace/cache.tar.gz .cabal/
 
 - name: gcr.io/cloud-builders/gsutil
   id: Store cache
