@@ -22,7 +22,7 @@ steps:
   - |
       cd server && cabal update && cabal build \
       && cabal test \
-      && cabal install --install-mehod=copy --installdir=/workspace \
+      && cabal install --install-method=copy --installdir=/workspace \
       && cp -r /builder/home/.cabal /workspace/cache
 
 - name: gcr.io/cloud-builders/gsutil
