@@ -20,6 +20,7 @@ steps:
   - -c
   - |
       tar xzf cache.tar.gz -C /builder/home \
+      && ls -a /builder/home \
       && cd server && cabal update && cabal build \
       && cabal test \
       && cabal install --install-method=copy --installdir=/workspace \
