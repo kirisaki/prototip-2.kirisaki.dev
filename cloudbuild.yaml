@@ -20,10 +20,11 @@ steps:
   entrypoint: /bin/sh
   args:
   - -c
-  - 'cd server && cabal update && cabal build '
+  - 'cp -r /workspace/cache /builder/home/.cabal'
+  - '&& cd server && cabal update && cabal build '
   - '&& cabal test'
   - '&& cabal install --install-mehod=copy --installdir=/workspace'
-  - '&& cp -r ~/.cabal /workspace/cache'
+  - '&& cp -r /builder/home/.cabal /workspace/cache'
 
 - name: gcr.io/cloud-builders/gsutil
   id: Store cache
