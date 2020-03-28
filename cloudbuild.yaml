@@ -10,7 +10,6 @@ steps:
   id: Restore cache
   args:
   - rsync
-  - -d
   - -r
   - gs://prototip-2-cache/cache/
   - /workspace/cache
@@ -30,7 +29,6 @@ steps:
   args:
   - rsync
   - -r
-  - -d
   - /workspace/cache/
   - gs://prototip-2-cache/cache
 
