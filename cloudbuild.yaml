@@ -12,7 +12,6 @@ steps:
   - rsync
   - -r
   - -d
-  - -m
   - gs://prototip-2-cache/cache/
   - /workspace/cache
 
@@ -34,7 +33,6 @@ steps:
   - rsync
   - -r
   - -d
-  - -m
   - /workspace/cache/
   - gs://prototip-2-cache/cache
 
@@ -51,5 +49,5 @@ steps:
   args:
   - 'push'
   - 'gcr.io/$PROJECT_ID/prototip-2:$TAG_NAME'
-timeout: 1800s
+timeout: 2400s
 
