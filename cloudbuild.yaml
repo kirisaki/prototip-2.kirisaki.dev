@@ -20,8 +20,7 @@ steps:
   entrypoint: /bin/sh
   args:
   - -c
-  - 'cp -r /workspace/cache /builder/home/.cabal'
-  - '&& cd server && cabal update && cabal build '
+  - 'cd server && cabal update && cabal build '
   - '&& cabal test'
   - '&& cabal install --install-mehod=copy --installdir=/workspace'
   - '&& cp -r /builder/home/.cabal /workspace/cache'
