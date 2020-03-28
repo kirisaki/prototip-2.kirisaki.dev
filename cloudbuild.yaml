@@ -11,6 +11,8 @@ steps:
   args:
   - rsync
   - -r
+  - -d
+  - -m
   - gs://prototip-2-cache/cache/
   - /workspace/cache
 
@@ -20,7 +22,8 @@ steps:
   args:
   - -c
   - |
-      cd server && cabal update && cabal build \
+      cp -r /workspace/cache /builder/home/.cabal \
+      && cd server && cabal update && cabal build \
       && cabal test \
       && cabal install --install-method=copy --installdir=/workspace \
       && cp -r /builder/home/.cabal /workspace/cache
@@ -30,6 +33,8 @@ steps:
   args:
   - rsync
   - -r
+  - -d
+  - -m
   - /workspace/cache/
   - gs://prototip-2-cache/cache
 
