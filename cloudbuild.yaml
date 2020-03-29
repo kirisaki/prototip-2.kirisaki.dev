@@ -47,8 +47,8 @@
   - image
   - 'prototip-2-image=gcr.io/$PROJECT_ID/prototip-2:$TAG_NAME'
   env:
-  - CLOUDSDK_COMPUTE_ZONE=asia-northeast1-a
-  - CLOUDSDK_CONTAINER_CLUSTER=prototip-2-cluster
+    - CLOUDSDK_COMPUTE_ZONE=asia-northeast1-a
+    - CLOUDSDK_CONTAINER_CLUSTER=prototip-2-cluster
 
 - name: gcr.io/$PROJECT_ID/kustomize
   id: Deploy
@@ -56,10 +56,10 @@
   - build
   - kustomize/
   env:
-  - APPLY=true
-  - CLOUDSDK_COMPUTE_ZONE=asia-northeast1-a
-  - CLOUDSDK_CONTAINER_CLUSTER=prototip-2-cluster
-  - GCLOUD_PROJECT=prototip-2
+    - APPLY=true
+    - CLOUDSDK_COMPUTE_ZONE=asia-northeast1-a
+    - CLOUDSDK_CONTAINER_CLUSTER=prototip-2-cluster
+    - GCLOUD_PROJECT=prototip-2
 
 timeout: 2400s
 
