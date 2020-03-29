@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: prototip-2-container
-          image: prototip-image
+          image: prototip-2-image
           ports:
             - containerPort: 8080
