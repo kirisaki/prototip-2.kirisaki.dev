@@ -17,3 +17,8 @@ spec:
           image: prototip-2-image
           ports:
             - containerPort: 8080
+          env:
+          - name: CLUSTER_NAME
+            value: prototip-2-cluster
+          - name: CLUSTER_LOCATION
+            value: asia-northeast1-a
