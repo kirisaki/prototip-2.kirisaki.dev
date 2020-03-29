@@ -48,12 +48,12 @@ steps:
 
 - name: gcr.io/$PROJECT_ID/kustomize
   id: Inject variables
-  dir: kustomize/
+  dir: kustomize
   args:
   - edit
   - set
   - image
-  - prototip-2-image=gcr.io/$PROJECT_ID/prototip-2:$TAG_NAME
+  - 'prototip-2-image=gcr.io/$PROJECT_ID/prototip-2:$TAG_NAME'
 
 - name: gcr.io/$PROJECT_ID/kustomize
   id: Deploy
