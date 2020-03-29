@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prototip-2-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: prototip-2-app
+  template:
+    metadata:
+      labels:
+        app: prototip-2-app
+    spec:
+      containers:
+        - name: prototip-2-container
+          image: prototip-image
+          ports:
+            - containerPort: 8080

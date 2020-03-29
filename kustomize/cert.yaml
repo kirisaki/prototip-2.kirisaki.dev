@@ -1,0 +1,7 @@
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: prototip-2-cert
+spec:
+  domains:
+    - prototip-2.kirisaki.dev

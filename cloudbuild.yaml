@@ -14,7 +14,7 @@ steps:
   - /workspace/cache.tar.gz
 
 - name: 'haskell:8.8.2'
-  id: Test & Build
+  id: Test & Build binary
   entrypoint: /bin/sh
   args:
   - -c
@@ -33,7 +33,7 @@ steps:
   - gs://prototip-2-cache/cache.tar.gz
 
 - name: gcr.io/cloud-builders/docker
-  id: Build
+  id: Build image
   args:
   - 'build'
   - '-t'
@@ -41,9 +41,30 @@ steps:
   - '.'
 
 - name: gcr.io/cloud-builders/docker
-  id: Push
+  id: Push image
   args:
   - 'push'
   - 'gcr.io/$PROJECT_ID/prototip-2:$TAG_NAME'
+
+- name: gcr.io/$PROJECT_ID/kustomize
+  id: Inject variables
+  entrypoint: /bin/sh
+  args:
+  - -c
+  - |
+      cd kustomize &&
+      kustomize edit set image prototip-2-image=gcr.io/$PROJECT_ID/prototip-2:$TAG_NAME
+
+- name: gcr.io/$PROJECT_ID/kustomize
+  id: Deploy
+  args:
+  - build
+  - kustomize/
+  env:
+    - APPLY=true
+    - CLOUDSDK_COMPUTE_ZONE=asia-northeast1
+    - CLOUDSDK_CONTAINER_CLUSTER=prototip-2-cluster
+    - GCLOUD_PROJECT=prototip-2
+
 timeout: 2400s
 

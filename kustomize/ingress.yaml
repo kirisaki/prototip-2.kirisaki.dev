@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: prototip-2-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: prototip-2
+    networking.gke.io/managed-certificates: prototip-2-cert
+spec:
+  rules:
+    - host: prototip-2.kirisaki.dev
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: prototip-2-service
+            servicePort: 8080
