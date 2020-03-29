@@ -62,7 +62,7 @@ steps:
   - kustomize/
   env:
     - APPLY=true
-    - CLOUDSDK_COMPUTE_ZONE=asia-northeast1
+    - CLOUDSDK_COMPUTE_ZONE=asia-northeast1-a
     - CLOUDSDK_CONTAINER_CLUSTER=prototip-2-cluster
     - GCLOUD_PROJECT=prototip-2
 
