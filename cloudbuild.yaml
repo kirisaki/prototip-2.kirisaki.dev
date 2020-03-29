@@ -48,12 +48,12 @@ steps:
 
 - name: gcr.io/$PROJECT_ID/kustomize
   id: Inject variables
-  entrypoint: /bin/sh
+  dir: kustomize/
   args:
-  - -c
-  - |
-      cd kustomize &&
-      kustomize edit set image prototip-2-image=gcr.io/$PROJECT_ID/prototip-2:$TAG_NAME
+  - edit
+  - set
+  - image
+  - prototip-2-image=gcr.io/$PROJECT_ID/prototip-2:$TAG_NAME
 
 - name: gcr.io/$PROJECT_ID/kustomize
   id: Deploy
@@ -64,7 +64,7 @@ steps:
     - APPLY=true
     - CLOUDSDK_COMPUTE_ZONE=asia-northeast1-a
     - CLOUDSDK_CONTAINER_CLUSTER=prototip-2-cluster
-    - GCLOUD_PROJECT=prototip-2
+      #- GCLOUD_PROJECT=prototip-2
 
 timeout: 2400s
 
