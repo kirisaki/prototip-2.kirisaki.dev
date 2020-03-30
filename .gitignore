@@ -4,3 +4,6 @@ server-exe
 
 terraform/*.tfvars
 terraform/.terraform/
+
+client/node_modules/
+client/dist/
