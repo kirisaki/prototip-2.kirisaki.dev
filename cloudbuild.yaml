@@ -51,6 +51,7 @@ steps:
   env:
   - CLOUDSDK_COMPUTE_ZONE=asia-northeast1-a
   - CLOUDSDK_CONTAINER_CLUSTER=prototip-2-cluster
+  - GCLOUD_PROJECT=prototip-2
 
 - name: gcr.io/$PROJECT_ID/kustomize
   id: Deploy
