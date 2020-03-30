@@ -32,6 +32,16 @@ steps:
   args:
   - install
 
+- name: gcr.io/cloud-builders/gsutil
+  id: Restore node_modules
+  dir: client
+  entrypoint: /bin/sh
+  args:
+  - -c
+  - |
+      gsutil cp gs://prototip-2-cache/node_modules.tar.gz node_modules.tar.gz && \
+      tar xzf node_modules.tar.gz
+
 - name: gcr.io/cloud-builders/yarn
   id: Build client
   dir: client

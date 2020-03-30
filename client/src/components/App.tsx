@@ -4,7 +4,7 @@ import {} from 'react'
 export const App: React.FC = () => {
   return (
     <h1>
-      nyaan
+      nyaaaaaan
     </h1>
   )
 }
