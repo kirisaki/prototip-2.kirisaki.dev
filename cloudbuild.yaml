@@ -13,11 +13,11 @@ steps:
   args:
   - -c
   - |
-      tar xzf cache.tar.gz -C /builder/home/ \
-      && cd server && cabal update && cabal build \
-      && cabal test \
-      && cabal install --install-method=copy --installdir=/workspace \
-      && cd /builder/home && tar czf /workspace/cache.tar.gz .cabal/
+      tar xzf cache.tar.gz -C /builder/home/ &&\
+      cd server && cabal update && cabal build &&\
+      cabal test &&\
+      cabal install --install-method=copy --installdir=/workspace &&\
+      cd /builder/home && tar czf /workspace/cache.tar.gz .cabal/
 
 - name: gcr.io/cloud-builders/gsutil
   id: Store cache
@@ -26,8 +26,30 @@ steps:
   - /workspace/cache.tar.gz
   - gs://prototip-2-cache/cache.tar.gz
 
+- name: gcr.io/cloud-builders/yarn
+  id: Install client modules
+  dir: client
+  args:
+  - install
+
+- name: gcr.io/cloud-builders/yarn
+  id: Build client
+  dir: client
+  args:
+  - webpack
+
+- name: gcr.io/cloud-builders/gsutil
+  id: Store node_modules
+  dir: client
+  entrypoint: /bin/sh
+  args:
+  - -c
+  - |
+      tar czf node_modules.tar.gz node_modules/ && \
+      gsutil cp node_modules.tar.gz gs://prototip-2-cache/node_modules.tar.gz
+
 - name: gcr.io/cloud-builders/docker
-  id: Build image
+  id: Build docker image
   args:
   - 'build'
   - '-t'
@@ -35,13 +57,13 @@ steps:
   - '.'
 
 - name: gcr.io/cloud-builders/docker
-  id: Push image
+  id: Push docker image
   args:
   - 'push'
   - 'gcr.io/$PROJECT_ID/prototip-2:$TAG_NAME'
 
 - name: gcr.io/$PROJECT_ID/kustomize
-  id: Inject variables
+  id: Inject variables to manifests
   dir: kustomize
   args:
   - edit
