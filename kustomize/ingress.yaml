@@ -10,7 +10,7 @@ spec:
     - host: prototip-2.kirisaki.dev
       http:
         paths:
-        - path: /*
+        - path: /.*
           backend:
             serviceName: prototip-2-service
             servicePort: 8080
