@@ -8,10 +8,13 @@ module Main where
 import Data.Extensible
 import Data.Proxy
 import Data.Text
+import Lucid
+import Lucid.Servant
 import Network.Wai
 import Network.Wai.Handler.Warp
 import Servant
 import Servant.API
+import Servant.HTML.Lucid
 
 type Message = Record
     '[ "type" >: Text
@@ -21,10 +24,26 @@ type Message = Record
 getMessage :: Servant.Handler Message
 getMessage = pure $ #type @= "text" <: #msg @= "nyan" <: nil
 
-type Api = Get '[JSON] Message
+indexHtml :: Servant.Handler (Html ())
+indexHtml = pure $ do
+    doctype_ 
+    html_ $ do
+        head_ $ do
+            meta_ [charset_ "utf-8"]
+            title_ [] "prototip-2"
+        body_ $ do
+            div_ [id_ "app"] mempty
+            script_ [src_ "/main.js"] empty 
+
+
+type Api = "api" :> Get '[JSON] Message
+        :<|> Get '[HTML] (Html ())
+        :<|> Raw
 
 server :: Server Api
-server = getMessage
+server = getMessage 
+    :<|> indexHtml
+    :<|> serveDirectoryWebApp "/js"
 
 app :: Application
 app = serve (Proxy @ Api) server
