@@ -1,21 +1,28 @@
-const path = require("path")
+const path = require('path')
 
 module.exports = {
   output: {
     path: path.join(__dirname, '/dist')
   },
+  devServer:{
+    contentBase: path.join(__dirname, '/dist')
+  },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"]
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: "ts-loader",
+        loader: 'ts-loader',
         options: {
           transpileOnly: true
         }
-      }
-    ]
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader?modules'],
+      },
+    ],
   },
 }
