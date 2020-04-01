@@ -24,25 +24,29 @@ type Message = Record
 getMessage :: Servant.Handler Message
 getMessage = pure $ #type @= "text" <: #msg @= "nyan" <: nil
 
-indexHtml :: Servant.Handler (Html ())
-indexHtml = pure $ do
+htmlTemplate :: Text -> Servant.Handler (Html ())
+htmlTemplate t = pure $ do
     doctype_ 
     html_ $ do
         head_ $ do
             meta_ [charset_ "utf-8"]
-            title_ [] "prototip-2"
+            title_ [] (pure t)
         body_ $ do
             div_ [id_ "app"] mempty
             script_ [src_ "/main.js"] empty 
 
 
 type Api = "api" :> Get '[JSON] Message
+        :<|> "about" :> Get '[HTML] (Html ())
+        :<|> "dashboard" :> Get '[HTML] (Html ())
         :<|> Get '[HTML] (Html ())
         :<|> Raw
 
 server :: Server Api
 server = getMessage 
-    :<|> indexHtml
+    :<|> htmlTemplate "prototip-2"
+    :<|> htmlTemplate "prototip-2 - about"
+    :<|> htmlTemplate "prototip-2 - dashboard"
     :<|> serveDirectoryWebApp "/js"
 
 app :: Application
