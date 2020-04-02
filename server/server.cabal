@@ -31,6 +31,7 @@ executable server-exe
     , servant-lucid
     , text
     , wai
+    , wai-extra
     , warp
   default-language: Haskell2010
 
@@ -53,5 +54,6 @@ test-suite server-test
     , servant-lucid
     , text
     , wai
+    , wai-extra
     , warp
   default-language: Haskell2010

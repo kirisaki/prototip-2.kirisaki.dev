@@ -12,6 +12,7 @@ import Data.Text
 import Lucid
 import Lucid.Servant
 import Network.Wai
+import Network.Wai.Middleware.Gzip
 import Network.Wai.Handler.Warp
 import Servant
 import Servant.API
@@ -58,7 +59,7 @@ server = getMessage
     :<|> notfound 
 
 app :: Application
-app = serve (Proxy @ Api) server
+app = gzip def $ serve (Proxy @ Api) server
 
 main :: IO ()
 main = do
