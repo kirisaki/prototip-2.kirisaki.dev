@@ -5,6 +5,7 @@
 {-# LANGUAGE TypeOperators #-}
 module Main where
 
+import Data.CaseInsensitive
 import Data.Extensible
 import Data.Proxy
 import Data.Text
@@ -24,8 +25,8 @@ type Message = Record
 getMessage :: Servant.Handler Message
 getMessage = pure $ #type @= "text" <: #msg @= "nyan" <: nil
 
-htmlTemplate :: Text -> Servant.Handler (Html ())
-htmlTemplate t = pure $ do
+htmlTemplate :: Text -> Html ()
+htmlTemplate t = do
     doctype_ 
     html_ $ do
         head_ $ do
@@ -33,21 +34,28 @@ htmlTemplate t = pure $ do
             title_ [] (pure t)
         body_ $ do
             div_ [id_ "app"] mempty
-            script_ [src_ "/main.js"] empty 
+            script_ [src_ "/scripts/main.js"] empty 
 
+notfound :: [Text] -> Servant.Handler NoContent
+notfound _ = throwError $ err404 
+    { errBody = renderBS (htmlTemplate "prototip-2 - notfound")
+    , errHeaders = [(mk "Content-Type", "text/html; charset=utf-8")]
+    }
 
 type Api = "api" :> Get '[JSON] Message
         :<|> "about" :> Get '[HTML] (Html ())
         :<|> "dashboard" :> Get '[HTML] (Html ())
         :<|> Get '[HTML] (Html ())
-        :<|> Raw
+        :<|> "scripts" :> Raw
+        :<|> CaptureAll "path" Text :> Get '[JSON] NoContent
 
 server :: Server Api
 server = getMessage 
-    :<|> htmlTemplate "prototip-2"
-    :<|> htmlTemplate "prototip-2 - about"
-    :<|> htmlTemplate "prototip-2 - dashboard"
+    :<|> pure (htmlTemplate "prototip-2")
+    :<|> pure (htmlTemplate "prototip-2 - about")
+    :<|> pure (htmlTemplate "prototip-2 - dashboard")
     :<|> serveDirectoryWebApp "/js"
+    :<|> notfound 
 
 app :: Application
 app = serve (Proxy @ Api) server
