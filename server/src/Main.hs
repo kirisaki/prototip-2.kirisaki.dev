@@ -59,7 +59,7 @@ server = getMessage
     :<|> notfound 
 
 app :: Application
-app = gzip def $ serve (Proxy @ Api) server
+app = gzip def { gzipFiles = GzipCompress  } $ serve (Proxy @ Api) server
 
 main :: IO ()
 main = do
