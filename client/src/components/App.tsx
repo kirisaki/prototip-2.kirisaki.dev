@@ -10,6 +10,7 @@ import { Navigation } from './Navigation'
 import { Index } from './Index'
 import { About } from './About'
 import { Dashboard } from './Dashboard'
+import { Notfound } from './Notfound'
 
 import styles from './style.css'
 
@@ -28,6 +29,9 @@ export const App: React.FC = () => {
           </Route>
           <Route path = "/dashboard">
             <Dashboard />
+          </Route>
+          <Route path = "*">
+            <Notfound />
           </Route>
         </Switch>
       </div>
