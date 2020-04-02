@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useEffect } from 'react'
 
-export const Index: React.FC = () => {
+const Index: React.FC = () => {
   useEffect(() => {
     document.title = 'prototip-2'
   })
@@ -11,3 +11,5 @@ export const Index: React.FC = () => {
     </div>
   )
 }
+
+export default Index

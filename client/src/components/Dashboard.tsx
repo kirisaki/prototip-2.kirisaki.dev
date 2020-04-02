@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useEffect } from 'react'
 
-export const Dashboard: React.FC = () => {
+const Dashboard: React.FC = () => {
   useEffect(() => {
     document.title = 'prototip-2 - dashboard'
   })
@@ -12,4 +12,4 @@ export const Dashboard: React.FC = () => {
   )
 }
 
-
+export default Dashboard

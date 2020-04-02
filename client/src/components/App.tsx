@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { Suspense, lazy } from 'react'
 import {} from 'react'
 import { 
   BrowserRouter as Router,
@@ -7,10 +7,10 @@ import {
 } from 'react-router-dom'
 
 import { Navigation } from './Navigation'
-import { Index } from './Index'
-import { About } from './About'
-import { Dashboard } from './Dashboard'
-import { Notfound } from './Notfound'
+const Index = lazy(() => import('./Index'))
+const About = lazy(() => import('./About'))
+const Dashboard = lazy(() => import('./Dashboard'))
+const Notfound = lazy(() => import('./Notfound'))
 
 import styles from './style.css'
 
@@ -20,20 +20,22 @@ export const App: React.FC = () => {
       <div>
         <Navigation />
         <hr />
-        <Switch>
-          <Route exact path = "/">
-            <Index />
-          </Route>
-          <Route path = "/about">
-            <About />
-          </Route>
-          <Route path = "/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path = "*">
-            <Notfound />
-          </Route>
-        </Switch>
+        <Suspense fallback={<div>loading...</div>}>
+          <Switch>
+            <Route exact path = "/">
+              <Index />
+            </Route>
+            <Route path = "/about">
+              <About />
+            </Route>
+            <Route path = "/dashboard">
+              <Dashboard />
+            </Route>
+            <Route path = "*">
+              <Notfound />
+            </Route>
+          </Switch>
+        </Suspense>
       </div>
     </Router>
   )

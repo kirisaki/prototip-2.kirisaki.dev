@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useEffect } from 'react'
 
-export const About: React.FC = () => {
+const About: React.FC = () => {
   useEffect(() => {
     document.title = 'prototip-2 - about'
   })
@@ -12,3 +12,4 @@ export const About: React.FC = () => {
   )
 }
 
+export default About

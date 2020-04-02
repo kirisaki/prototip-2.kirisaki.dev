@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useEffect } from 'react'
 
-export const Notfound: React.FC = () => {
+const Notfound: React.FC = () => {
   useEffect(() => {
     document.title = 'prototip-2 - 404 not found'
   })
@@ -12,3 +12,4 @@ export const Notfound: React.FC = () => {
   )
 }
 
+export default Notfound

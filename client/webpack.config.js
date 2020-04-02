@@ -2,7 +2,8 @@ const path = require('path')
 
 module.exports = {
   output: {
-    path: path.join(__dirname, '/dist')
+    path: path.join(__dirname, '/dist'),
+    publicPath: '/scripts/',
   },
   devServer:{
     contentBase: path.join(__dirname, '/dist')
