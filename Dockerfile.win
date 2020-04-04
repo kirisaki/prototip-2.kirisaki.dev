@@ -1,0 +1,10 @@
+FROM mcr.microsoft.com/windows/nanoserver:1903-amd64
+
+RUN mkdir "c:/js"
+
+COPY ./client/dist c:/js
+
+COPY ./server-exe.exe c:/
+
+CMD ["c:/server-exe.exe"]
+
